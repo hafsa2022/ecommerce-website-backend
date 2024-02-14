@@ -1,0 +1,23 @@
+services:
+  postgres:
+    container_name: postgresql2
+    image: postgres
+    environment:
+      POSTGRES_DB: MYDB2
+      POSTGRES_USER: myuser2
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
